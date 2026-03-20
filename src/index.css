@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .dial-button {
+    @apply relative overflow-hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+  }
+
+  .dial-button::before {
+    content: '';
+    @apply absolute inset-0 bg-blue-400 rounded-2xl opacity-0 transition-opacity duration-300;
+  }
+
+  .dial-button:active::before {
+    @apply opacity-30;
+  }
+
+  @media (hover: hover) {
+    .dial-button:hover::before {
+      @apply opacity-10;
+    }
+  }
+}
+
+@layer utilities {
+  @supports (-webkit-touch-callout: none) {
+    .dial-button {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+}
